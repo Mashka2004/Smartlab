@@ -10,7 +10,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.smartlab.layouts.OnBoard
 import com.example.smartlab.ui.theme.SmartlabTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,28 +24,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             SmartlabTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    OnBoard(buttonText="Пропустить", headerText = "Анализы"
+                        ,decriptionText="Экспресс сбор и получение проб",
+                        dotsImg = ImageBitmap.imageResource(R.drawable.group_1),
+                        ilustrasion= ImageBitmap.imageResource(R.drawable.illustration),
+                        modifier = Modifier.padding(innerPadding))
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SmartlabTheme {
-        Greeting("Android")
     }
 }

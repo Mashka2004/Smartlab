@@ -7,21 +7,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.example.smartlab.ui.theme.textDescription
 
 @Composable
 fun OnBoardDescription(modifier: Modifier = Modifier, text: String) {
     Text(
         text = text,
         modifier = modifier,
-        color = MaterialTheme.colorScheme.tertiary,
+        color = textDescription,
         fontSize = 14.sp,
         fontWeight = FontWeight.Normal,
         lineHeight = 20.sp
     )
-}
-
-@Preview
-@Composable
-private fun OnBoardDescriptionPreview() {
-    OnBoardDescription(text = "Описание")
 }
