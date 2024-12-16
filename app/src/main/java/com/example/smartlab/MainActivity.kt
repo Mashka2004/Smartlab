@@ -15,6 +15,7 @@ import com.example.smartlab.ui.theme.SmartlabTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
