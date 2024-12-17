@@ -21,6 +21,7 @@ import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 import com.example.smartlab.R
 import com.example.smartlab.components.OnBoardDescription
@@ -35,7 +36,7 @@ fun OnBoard(modifier: Modifier = Modifier,buttomText: String,headeText: String,d
     Column(modifier = modifier.fillMaxSize().padding(20.dp)) {
 
         Row {
-            TextButton(text = buttomText, modifier = Modifier.weight(1f), onClick = {})
+            TextButton(text = buttomText, modifier = Modifier.weight(1f), onClick = {}, fonSize = 20.sp)
             Image(ImageBitmap.imageResource(R.drawable.shape__1_),null, modifier = Modifier.weight(1f), alignment = Alignment.CenterEnd)
         }
         Spacer(Modifier.height(29.dp))
