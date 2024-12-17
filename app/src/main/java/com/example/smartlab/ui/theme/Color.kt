@@ -13,3 +13,11 @@ val Pink40 = Color(0xFF7D5260)
 val textButtonColor = Color(0xFF57A9FF)
 val textHeaderColor = Color(0xFF00B712)
 val textDescription = Color(0xFF939396)
+
+
+val AccentInactiveColor = Color(0xFFC9D4FB)
+val InputStrokeColor = Color(0xFFEBEBEB)
+val InputBGColor = Color(0xFFF5F5F9)
+val InputFocusedBorderColor = Color(0xFFB8C1CC)
+val AccentColor = Color(0xFF1A6FEE)
+val EmailColor = Color(0xFF7E7E9A)

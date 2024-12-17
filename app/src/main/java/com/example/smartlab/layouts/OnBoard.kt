@@ -36,7 +36,7 @@ fun OnBoard(modifier: Modifier = Modifier,buttomText: String,headeText: String,d
 
         Row {
             TextButton(text = buttomText, modifier = Modifier.weight(1f), onClick = {})
-            Image(ImageBitmap.imageResource(R.drawable.shape__1_),null, modifier = Modifier.weight(1f))
+            Image(ImageBitmap.imageResource(R.drawable.shape__1_),null, modifier = Modifier.weight(1f), alignment = Alignment.CenterEnd)
         }
         Spacer(Modifier.height(29.dp))
         OnBoardHeader(text = headeText, modifier = Modifier.align(Alignment.CenterHorizontally))
