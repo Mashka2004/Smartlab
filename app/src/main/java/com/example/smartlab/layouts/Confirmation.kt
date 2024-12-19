@@ -1,6 +1,7 @@
 package com.example.smartlab.layouts
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,31 +9,63 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.input.KeyboardType.Companion.Text
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.smartlab.R
-import com.example.smartlab.components.InputText
-import com.example.smartlab.components.OnBoardDescription
+import com.example.smartlab.components.PrimaryButton
+import com.example.smartlab.ui.theme.AccentColor
 import com.example.smartlab.ui.theme.AccentInactiveColor
 import com.example.smartlab.ui.theme.InputBGColor
+import com.example.smartlab.ui.theme.InputFocusedBorderColor
+import com.example.smartlab.ui.theme.InputStrokeColor
 import com.example.smartlab.ui.theme.textDescription
+import kotlinx.coroutines.delay
 
+//Описание назначения класса - Класс Confirmation используется для отображения экрана,
+// на котором пользователи могут ввести код, полученный по электронной почте или через SMS.
+// Такой экран часто встречается в процессе регистрации, восстановления пароля или верификации учетной записи.
+//Дата создания - 17.12.2024;
+//Автор создания - Капотова Мария;
 @Composable
 fun Confirmation(modifier: Modifier = Modifier) {
+    val textField = remember { mutableStateListOf("","","","","","") }
+
+    var timerSeconds by remember { mutableStateOf(60) }
+
+    var isTimerRunning by remember { mutableStateOf(true) }
+
+    LaunchedEffect(key1 = isTimerRunning) {
+        if (isTimerRunning) {
+            while (timerSeconds > 0) {
+                delay(1000L)
+                timerSeconds--
+            }
+            isTimerRunning = false
+        }
+    }
     Column(
         Modifier
             .fillMaxSize()
@@ -57,29 +90,41 @@ fun Confirmation(modifier: Modifier = Modifier) {
             .align(Alignment.CenterHorizontally)
     )
         Spacer(Modifier.height(20.dp))
-    Row {
-        InputText(placeholder = "", modifier = Modifier.size(48.dp))
-        Spacer(Modifier.width(10.dp))
-        InputText(placeholder = "", modifier = Modifier.size(48.dp))
-        Spacer(Modifier.width(10.dp))
-        InputText(placeholder = "", modifier = Modifier.size(48.dp))
-        Spacer(Modifier.width(10.dp))
-        InputText(placeholder = "", modifier = Modifier.size(48.dp))
-        Spacer(Modifier.width(10.dp))
-        InputText(placeholder = "", modifier = Modifier.size(48.dp))
-        Spacer(Modifier.width(10.dp))
-        InputText(placeholder = "", modifier = Modifier.size(48.dp))
-        Spacer(Modifier.width(10.dp))
-    }
+        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            textField.forEachIndexed{index,value->
+                OutlinedTextField(
+                    value=value, onValueChange = {newValue->
+                        textField[index] = newValue
+                    },modifier = Modifier.size(48.dp)
+                    , colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = InputBGColor,
+                        unfocusedContainerColor = InputBGColor,
+                        focusedPlaceholderColor = Color.Black.copy(alpha = 0.5f),
+                        unfocusedPlaceholderColor = Color.Black.copy(alpha = 0.5f),
+                        focusedBorderColor = InputFocusedBorderColor,
+                        unfocusedBorderColor = InputStrokeColor,
+                        cursorColor = AccentColor
+                    ),
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Number
+                    )
+                )
+            }
+        }
         Spacer(Modifier.height(20.dp))
-        Text(text = "Отправить код повторно можно \n будет через 59 секунд",
-            fontSize = 17.sp,
-            textAlign = TextAlign.Center,
-            color = textDescription,
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-
-        )
+        if (isTimerRunning) {
+            Text(
+                text = "Отправить код повторно можно\nбудет через $timerSeconds секунд",
+                style = TextStyle(fontSize = 14.sp, color = Color.Gray),
+                textAlign = TextAlign.Center,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
+        } else {
+            PrimaryButton(modifier = Modifier, text = "Выслать код повторно",onClick = {
+                timerSeconds = 60
+                isTimerRunning = true
+            })
+        }
     }
 }
 

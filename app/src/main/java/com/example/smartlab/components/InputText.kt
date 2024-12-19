@@ -29,7 +29,6 @@ fun InputText(modifier: Modifier = Modifier, placeholder: String, enabled: Boole
         onValueChange = { text = it },
         modifier = modifier,
         enabled = enabled,
-        readOnly = true,
         placeholder = {
             Text(
                 text = placeholder,

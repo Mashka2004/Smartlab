@@ -13,11 +13,11 @@ import androidx.compose.ui.unit.sp
 import com.example.smartlab.ui.theme.AccentColor
 import com.example.smartlab.ui.theme.AccentInactiveColor
 
-
 @Composable
-fun PrimaryButton(modifier: Modifier = Modifier, onClick: () -> Unit = {}, Enable:Boolean=true, text:String) {
+fun PrimaryButton(modifier: Modifier = Modifier, onClick: () -> Unit = {},
+                  Enable:Boolean=true, text:String) {
     Button(
-        onClick = {},
+        onClick = {onClick()},
         modifier=modifier,
         enabled = Enable,
         shape = RoundedCornerShape(10.dp),
@@ -35,5 +35,4 @@ fun PrimaryButton(modifier: Modifier = Modifier, onClick: () -> Unit = {}, Enabl
             lineHeight = 24.sp
         )
     }
-
 }
