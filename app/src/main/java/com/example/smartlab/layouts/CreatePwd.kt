@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.smartlab.R
 import com.example.smartlab.components.TextButton
 import com.example.smartlab.ui.theme.InputBGColor
@@ -33,7 +34,7 @@ import com.example.smartlab.ui.theme.textDescription
 //Дата создания - 17.12.2024;
 //Автор создания - Капотова Мария;
 @Composable
-fun CreatePwd(modifier: Modifier = Modifier) {
+fun CreatePwd(modifier: Modifier = Modifier,navController:NavController) {
     val PassFieldValues = remember { mutableStateListOf("", "", "", "") }
     Column (modifier = modifier
         .fillMaxSize()
@@ -134,13 +135,18 @@ fun CreatePwd(modifier: Modifier = Modifier) {
                     ) ) {
                     Image(painter = painterResource(R.drawable.del_icon),null)
                 }
-            }
+                var pass = PassFieldValues.joinToString("")
 
+                if(pass.length == 4){
+                    pass="";
+                    navController.navigate("patientCard")
+                }
+            }
         }
     }
 }
 @Preview
 @Composable
 private fun CreatePwdView() {
-    CreatePwd()
+
 }
