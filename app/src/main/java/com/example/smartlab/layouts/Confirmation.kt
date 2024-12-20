@@ -52,7 +52,7 @@ import kotlinx.coroutines.delay
 //Дата создания - 17.12.2024;
 //Автор создания - Капотова Мария;
 @Composable
-fun Confirmation(modifier: Modifier = Modifier, navController: NavController) {
+fun Confirmation(modifier: Modifier = Modifier, navController: NavController, onClick:()->Unit) {
     val code="111111";
     val focusRequesters = remember { List(6){ FocusRequester() }}
     val textField = remember { mutableStateListOf("","","","","","") } // Состояние для хранения цифр кода подтверждения
@@ -76,7 +76,7 @@ fun Confirmation(modifier: Modifier = Modifier, navController: NavController) {
             .fillMaxSize()
             .padding(top = 24.dp, start = 20.dp, end =20.dp, bottom = 56.dp)
     ){
-    Button(onClick = {},
+    Button(onClick = {onClick()},
         modifier = Modifier.padding(0.dp),
         colors = ButtonDefaults.buttonColors(
         containerColor = InputBGColor,
