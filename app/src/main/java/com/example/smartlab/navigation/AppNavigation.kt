@@ -21,13 +21,14 @@ import com.example.smartlab.layouts.Confirmation
 @Composable
 fun AppNavigation(modifier: Modifier = Modifier) {
     val navControler = rememberNavController()
-
+// NavHost - контейнер для навигационных графов
     NavHost(navControler, startDestination = "main"){
-        composable("main") {
-            val pagerState = rememberPagerState(pageCount = {
+        composable("main") { // Определение маршрута "main"
+            val pagerState = rememberPagerState(pageCount = {   // Состояние для управления HorizontalPager
                 3
             })
             HorizontalPager(state = pagerState) { page ->
+                // Отображение разных экранов OnBoard в зависимости от текущей страницы
                 if (page == 0) {
 
                     OnBoard(
@@ -60,9 +61,8 @@ fun AppNavigation(modifier: Modifier = Modifier) {
                             .fillMaxSize())
                 }
             }
-
         }
-        composable("email") {
+        composable("email") { // Определение маршрута "email"
             Authorization(OnClick = {navControler.navigate("confirmCode")})
         }
 

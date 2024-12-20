@@ -60,12 +60,12 @@ fun CreatePwd(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(56.dp))
         Row(modifier.align(Alignment.CenterHorizontally)) {
             PassFieldValues.forEachIndexed { index, value ->
-                if(value=="") {
+                if(value=="") { // Отображение индикаторов ввода пароля
                     Image(painter = painterResource(R.drawable.ellipse_2),null,
                         modifier = Modifier
                             .padding(12.dp)
                             .size(16.dp))
-                }else{
+                }else{ // Заполненный кружок, если цифра введена
                     Image(painter = painterResource(R.drawable.ellipse_1),null,
                         modifier = Modifier
                             .padding(12.dp)
@@ -76,6 +76,7 @@ fun CreatePwd(modifier: Modifier = Modifier) {
             }
         }
         Spacer(modifier.height(60.dp))
+        // Клавиатура для ввода пароля
         Column(modifier =Modifier.align(Alignment.CenterHorizontally)) {
             var counter = 1
             for(i in 1..3){
@@ -103,6 +104,7 @@ fun CreatePwd(modifier: Modifier = Modifier) {
             Spacer(modifier.height(24.dp))
             Row(modifier=Modifier.align(Alignment.End)) {
                 Button(onClick = {
+                    // Добавляем цифру в пароль, если еще не введены все цифры
                     if(PassFieldValues.size<=4){
                         val index = PassFieldValues.indexOfFirst { it.isEmpty()}
                         PassFieldValues[index]=0.toString()
@@ -115,6 +117,7 @@ fun CreatePwd(modifier: Modifier = Modifier) {
                     Text(text = "0",
                         fontSize = 24.sp) }
                 Spacer(modifier = Modifier.width(24.dp))
+                // Добавляем 0 в пароль, если еще не введены все цифры
                 Button(onClick = {
                     PassFieldValues.forEach{value->
                         if(value!=""){
