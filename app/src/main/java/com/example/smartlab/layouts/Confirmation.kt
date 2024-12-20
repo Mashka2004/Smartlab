@@ -25,6 +25,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
@@ -34,6 +36,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.smartlab.R
 import com.example.smartlab.components.PrimaryButton
 import com.example.smartlab.ui.theme.AccentColor
@@ -49,12 +52,15 @@ import kotlinx.coroutines.delay
 //Дата создания - 17.12.2024;
 //Автор создания - Капотова Мария;
 @Composable
-fun Confirmation(modifier: Modifier = Modifier) {
+fun Confirmation(modifier: Modifier = Modifier, navController: NavController) {
+    val code="111111";
+    val focusRequesters = remember { List(6){ FocusRequester() }}
     val textField = remember { mutableStateListOf("","","","","","") } // Состояние для хранения цифр кода подтверждения
 
     var timerSeconds by remember { mutableStateOf(60) } // Состояние для хранения оставшегося времени таймера
 
     var isTimerRunning by remember { mutableStateOf(true) } // Состояние для отслеживания, работает ли таймер
+
 
     LaunchedEffect(key1 = isTimerRunning) {
         if (isTimerRunning) {
@@ -95,7 +101,13 @@ fun Confirmation(modifier: Modifier = Modifier) {
                 OutlinedTextField(
                     value=value, onValueChange = {newValue->
                         textField[index] = newValue
-                    },modifier = Modifier.size(48.dp)
+                        if(textField.joinToString("")==code){
+                            navController.navigate("password")
+                        }
+                        if(newValue.length==1&&index<textField.lastIndex){
+                            focusRequesters[index+1].requestFocus()
+                        }
+                    },modifier = Modifier.size(48.dp) .focusRequester(focusRequesters[index]).padding(top = 1.dp)
                     , colors = OutlinedTextFieldDefaults.colors(
                         focusedContainerColor = InputBGColor,
                         unfocusedContainerColor = InputBGColor,
@@ -132,5 +144,5 @@ fun Confirmation(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun ConfirmationView() {
-    Confirmation()
+
 }
