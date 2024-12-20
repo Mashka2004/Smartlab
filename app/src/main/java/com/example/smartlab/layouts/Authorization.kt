@@ -27,11 +27,9 @@ import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.smartlab.R
-import com.example.smartlab.components.InputText
 import com.example.smartlab.components.PrimaryButton
 import com.example.smartlab.ui.theme.AccentColor
 import com.example.smartlab.ui.theme.EmailColor
@@ -53,10 +51,11 @@ import com.example.smartlab.ui.theme.InputStrokeColor
             .fillMaxSize()
             .padding(top = 59.dp, start = 20.dp, end =20.dp, bottom = 56.dp)
     ) {
-        var email by remember { mutableStateOf("") }
-        var isValidEmail by remember { mutableStateOf(false) }
-        val emailRegex = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}\$")
+        var email by remember { mutableStateOf("") }  // Состояние для хранения введенного email
+        var isValidEmail by remember { mutableStateOf(false) } // Состояние для отслеживания валидности email
+        val emailRegex = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}\$") // Регулярное выражение для проверки формата email
         Spacer(Modifier.size(59.dp))
+        // Ряд для отображения иконки и заголовка
         Row {
             Image(ImageBitmap.imageResource(R.drawable.hello),null, modifier = Modifier.width(32.dp).height(32.dp))
             Spacer(modifier = Modifier.width(16.dp))

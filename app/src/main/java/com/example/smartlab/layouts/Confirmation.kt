@@ -41,7 +41,6 @@ import com.example.smartlab.ui.theme.AccentInactiveColor
 import com.example.smartlab.ui.theme.InputBGColor
 import com.example.smartlab.ui.theme.InputFocusedBorderColor
 import com.example.smartlab.ui.theme.InputStrokeColor
-import com.example.smartlab.ui.theme.textDescription
 import kotlinx.coroutines.delay
 
 //Описание назначения класса - Класс Confirmation используется для отображения экрана,
@@ -51,11 +50,11 @@ import kotlinx.coroutines.delay
 //Автор создания - Капотова Мария;
 @Composable
 fun Confirmation(modifier: Modifier = Modifier) {
-    val textField = remember { mutableStateListOf("","","","","","") }
+    val textField = remember { mutableStateListOf("","","","","","") } // Состояние для хранения цифр кода подтверждения
 
-    var timerSeconds by remember { mutableStateOf(60) }
+    var timerSeconds by remember { mutableStateOf(60) } // Состояние для хранения оставшегося времени таймера
 
-    var isTimerRunning by remember { mutableStateOf(true) }
+    var isTimerRunning by remember { mutableStateOf(true) } // Состояние для отслеживания, работает ли таймер
 
     LaunchedEffect(key1 = isTimerRunning) {
         if (isTimerRunning) {
@@ -90,6 +89,7 @@ fun Confirmation(modifier: Modifier = Modifier) {
             .align(Alignment.CenterHorizontally)
     )
         Spacer(Modifier.height(20.dp))
+        // Ряд полей ввода для кода подтверждения
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             textField.forEachIndexed{index,value->
                 OutlinedTextField(
@@ -112,6 +112,7 @@ fun Confirmation(modifier: Modifier = Modifier) {
             }
         }
         Spacer(Modifier.height(20.dp))
+        // Условный вывод текста таймера или кнопки повторной отправки
         if (isTimerRunning) {
             Text(
                 text = "Отправить код повторно можно\nбудет через $timerSeconds секунд",

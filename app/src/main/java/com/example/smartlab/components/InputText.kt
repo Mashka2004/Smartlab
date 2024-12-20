@@ -19,7 +19,9 @@ import com.example.smartlab.ui.theme.AccentColor
 import com.example.smartlab.ui.theme.InputBGColor
 import com.example.smartlab.ui.theme.InputFocusedBorderColor
 import com.example.smartlab.ui.theme.InputStrokeColor
-
+//Описание назначения класса - InputText создает текстовое поле для ввода данных
+//Дата создания - 17.12.2024;
+//Автор создания - Капотова Мария;
 @Composable
 fun InputText(modifier: Modifier = Modifier, placeholder: String, enabled: Boolean = true) {
     var text by remember { mutableStateOf("") }

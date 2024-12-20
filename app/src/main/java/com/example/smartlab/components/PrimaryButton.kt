@@ -12,7 +12,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.smartlab.ui.theme.AccentColor
 import com.example.smartlab.ui.theme.AccentInactiveColor
-
+//Описание назначения класса - PrimaryButton создает стилизованную кнопку в виде основного элемента управления
+//Дата создания - 17.12.2024;
+//Автор создания - Капотова Мария;
 @Composable
 fun PrimaryButton(modifier: Modifier = Modifier, onClick: () -> Unit = {},
                   Enable:Boolean=true, text:String) {

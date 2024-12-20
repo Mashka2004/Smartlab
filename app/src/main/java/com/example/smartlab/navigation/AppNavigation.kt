@@ -1,7 +1,6 @@
 package com.example.smartlab.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
@@ -15,7 +14,10 @@ import com.example.smartlab.R
 import com.example.smartlab.layouts.OnBoard
 import com.example.smartlab.layouts.Authorization
 import com.example.smartlab.layouts.Confirmation
-
+//Описание назначения класса - AppNavigation управляет навигацией в приложении.
+// Он определяет, какие экраны отображаются и как пользователь переходит между ними
+//Дата создания - 17.12.2024;
+//Автор создания - Капотова Мария;
 @Composable
 fun AppNavigation(modifier: Modifier = Modifier) {
     val navControler = rememberNavController()

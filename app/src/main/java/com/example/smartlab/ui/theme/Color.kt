@@ -1,6 +1,5 @@
 package com.example.smartlab.ui.theme
 
-import android.content.res.Resources.Theme
 import androidx.compose.ui.graphics.Color
 
 val Purple80 = Color(0xFFD0BCFF)

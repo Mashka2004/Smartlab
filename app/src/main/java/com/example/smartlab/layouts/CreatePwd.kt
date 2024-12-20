@@ -28,8 +28,8 @@ import com.example.smartlab.R
 import com.example.smartlab.components.TextButton
 import com.example.smartlab.ui.theme.InputBGColor
 import com.example.smartlab.ui.theme.textDescription
-
-//Описание назначения класса -
+//Описание назначения класса - CreatePwd реализует экран для создания пароля,
+// состоящего из 4 цифр. Пользователю предлагается ввести пароль, нажимая на кнопки с цифрами.
 //Дата создания - 17.12.2024;
 //Автор создания - Капотова Мария;
 @Composable
@@ -100,9 +100,6 @@ fun CreatePwd(modifier: Modifier = Modifier) {
                     }
                 }
             }
-
-
-
             Spacer(modifier.height(24.dp))
             Row(modifier=Modifier.align(Alignment.End)) {
                 Button(onClick = {

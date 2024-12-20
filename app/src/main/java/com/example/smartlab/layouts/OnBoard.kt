@@ -45,7 +45,6 @@ fun OnBoard(modifier: Modifier = Modifier,buttomText: String,headeText: String,d
         Image(illustration,null, modifier = Modifier.align(Alignment.CenterHorizontally).fillMaxSize(0.8f))
     }
 }
-
 @Preview
 @Composable
 private fun OnBoardPreview() {
